@@ -1,0 +1,29 @@
+plugins {
+    id 'scala'
+    id 'application'
+}
+
+mainClassName = 'ru.d10xa.stackexchange.Main'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.12.3'
+    compileOnly "org.scala-lang:scala-compiler:2.12.3"
+    compile "org.scala-lang.modules:scala-async_2.12:0.9.7"
+    compile "com.typesafe.scala-logging:scala-logging_2.12:3.7.2"
+    compile 'com.typesafe.akka:akka-http_2.12:10.0.10'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'de.heikoseeberger:akka-http-circe_2.12:1.17.0'
+    compile 'io.circe:circe-parser_2.12:0.8.0'
+    compile 'io.circe:circe-generic_2.12:0.8.0'
+    testCompile 'org.scalatest:scalatest_2.12:3.0.4'
+}
+
+task runStub(type: JavaExec)
+runStub {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ru.d10xa.stackexchange.StackExchangeStubServer'
+}
